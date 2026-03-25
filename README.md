@@ -5,7 +5,7 @@ Simple Spring Boot project to practice global exception handling.
 ## What this project shows
 
 - `@RestControllerAdvice` in `src/main/java/org/example/exceptions/GlobalExceptionHandler.java`
-- Custom error response model in `src/main/java/org/example/exceptions/ErrorResponse.java`
+- RFC 7807 Problem Details (`application/problem+json`) for API errors
 - Demo endpoints in `src/main/java/org/example/exceptions/DemoController.java`
 
 ## Prerequisites
@@ -51,8 +51,12 @@ Expected response:
 
 ```json
 {
-  "timestamp": "2026-03-24T21:09:10.079795",
-  "message": "Mathematical Error: Cannot divide by zero."
+  "type": "https://api.example.com/problems/invalid-arithmetic",
+  "title": "Invalid Arithmetic Operation",
+  "status": 400,
+  "detail": "Mathematical error: cannot divide by zero.",
+  "instance": "/demo/divide-by-zero",
+  "timestamp": "2026-03-24T21:09:10.079795Z"
 }
 ```
 
@@ -68,8 +72,12 @@ Expected response:
 
 ```json
 {
-  "timestamp": "2026-03-24T21:20:00.000000",
-  "message": "Unexpected server error."
+  "type": "https://api.example.com/problems/internal-server-error",
+  "title": "Internal Server Error",
+  "status": 500,
+  "detail": "Unexpected server error.",
+  "instance": "/demo/unexpected-error",
+  "timestamp": "2026-03-24T21:20:00.000000Z"
 }
 ```
 
@@ -100,6 +108,5 @@ This includes:
 - `src/main/java/org/example/exceptions/ExceptionsApplication.java`
 - `src/main/java/org/example/exceptions/DemoController.java`
 - `src/main/java/org/example/exceptions/GlobalExceptionHandler.java`
-- `src/main/java/org/example/exceptions/ErrorResponse.java`
 - `pom.xml`
 
