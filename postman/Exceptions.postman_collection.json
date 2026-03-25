@@ -1,0 +1,55 @@
+{
+  "info": {
+    "name": "Exceptions Demo API",
+    "description": "Requests for testing global exception handling endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "5b9d6e5f-bc3f-4ef1-9a5b-145f850ecf9f"
+  },
+  "item": [
+    {
+      "name": "Divide By Zero (400)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/demo/divide-by-zero",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "demo",
+            "divide-by-zero"
+          ]
+        },
+        "description": "Triggers ArithmeticException and should return 400 from GlobalExceptionHandler."
+      },
+      "response": []
+    },
+    {
+      "name": "Unexpected Error (500)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/demo/unexpected-error",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "demo",
+            "unexpected-error"
+          ]
+        },
+        "description": "Triggers generic exception handler and should return 500."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
+
